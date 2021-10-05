@@ -92,7 +92,9 @@ function toggleOption(event) {
     // feature removed
     target.classList.remove("chosen");
     document.querySelector(`[data-feature='${feature}'`).classList.add("hide");
-    let theChild = document.querySelector(`li img alt="${feature}""`);
+    let theChild = document.querySelector(
+      `li img alt="${capitalize(feature)}"`
+    );
 
     const firstFrame = document.querySelector(theChild).getBoundingClientRect();
     console.log(firstFrame);
