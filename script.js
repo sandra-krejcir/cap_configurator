@@ -54,6 +54,7 @@ function toggleOption(event) {
 
     let selectedFeature = createFeatureElement(feature);
     document.querySelector("ul").appendChild(selectedFeature);
+    selectedFeature.classList.add(`${feature}`);
 
     const firstFrame = document
       .querySelector("#options")
@@ -78,7 +79,7 @@ function toggleOption(event) {
         { transformOrigin: "top left", transform: "none" },
       ],
       {
-        duration: 300,
+        duration: 600,
         easing: "ease-in-out",
       }
     );
@@ -92,16 +93,12 @@ function toggleOption(event) {
     // feature removed
     target.classList.remove("chosen");
     document.querySelector(`[data-feature='${feature}'`).classList.add("hide");
-    let theChild = document.querySelector(
-      `li img alt="${capitalize(feature)}"`
-    );
+    let theChild = document.querySelector(`.${feature}`);
 
-    const firstFrame = document.querySelector(theChild).getBoundingClientRect();
+    const firstFrame = theChild.getBoundingClientRect();
     console.log(firstFrame);
 
-    const lastFrame = document
-      .querySelector("#options")
-      .getBoundingClientRect();
+    const lastFrame = target.getBoundingClientRect();
     console.log(lastFrame);
 
     const deltaX = firstFrame.left - lastFrame.left;
@@ -119,12 +116,13 @@ function toggleOption(event) {
         { transformOrigin: "top left", transform: "none" },
       ],
       {
-        duration: 300,
+        duration: 600,
         easing: "ease-in-out",
       }
     );
 
     console.log(`Feature ${feature} is turned off!`);
+    document.querySelector("ul").removeChild(theChild);
 
     // TODO: More code
   }
