@@ -120,7 +120,7 @@ function toggleOption(event) {
     );
 
     console.log(`Feature ${feature} is turned off!`);
-    //document.querySelector("ul").removeChild(theChild);
+    //document.querySelector("ul").removeChild(theChild); - if I add it then the animation doesn't work :(
 
     // TODO: More code
   }
