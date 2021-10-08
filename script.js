@@ -44,6 +44,8 @@ function toggleOption(event) {
   // - find the existing featureElement in #selected ul
   // - create FLIP-animation to animate featureElement to img in target
   // - when animation is complete, remove featureElement from the DOM
+  let selectedFeature = createFeatureElement(feature);
+  document.querySelector("ul").appendChild(selectedFeature);
 
   if (features[feature]) {
     target.classList.add("chosen");
@@ -52,13 +54,9 @@ function toggleOption(event) {
       .querySelector(`[data-feature='${feature}'`)
       .classList.remove("hide");
 
-    let selectedFeature = createFeatureElement(feature);
-    document.querySelector("ul").appendChild(selectedFeature);
     selectedFeature.classList.add(`${feature}`);
 
-    const firstFrame = document
-      .querySelector("#options")
-      .getBoundingClientRect();
+    const firstFrame = target.getBoundingClientRect();
     console.log(firstFrame);
 
     const lastFrame = selectedFeature.getBoundingClientRect();
@@ -93,7 +91,7 @@ function toggleOption(event) {
     // feature removed
     target.classList.remove("chosen");
     document.querySelector(`[data-feature='${feature}'`).classList.add("hide");
-    let theChild = document.querySelector(`.${feature}`);
+    theChild = document.querySelector(`.${feature}`);
 
     const firstFrame = theChild.getBoundingClientRect();
     console.log(firstFrame);
@@ -122,7 +120,7 @@ function toggleOption(event) {
     );
 
     console.log(`Feature ${feature} is turned off!`);
-    document.querySelector("ul").removeChild(theChild);
+    //document.querySelector("ul").removeChild(theChild);
 
     // TODO: More code
   }
